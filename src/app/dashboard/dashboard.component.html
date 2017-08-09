@@ -1,0 +1,11 @@
+<h2>Demo dashboard</h2>
+
+<div [innerHTML]="temp | bypassHtmlSanitizer"></div>
+
+<gridster [options]="options">
+  <gridster-item [item]="item" *ngFor="let item of dashboard">
+    <div class="gridster-item-content">
+      <div [innerHTML]="item.content | bypassHtmlSanitizer"></div>
+    </div>
+  </gridster-item>
+</gridster>
