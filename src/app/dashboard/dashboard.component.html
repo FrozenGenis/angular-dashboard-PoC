@@ -1,11 +1,13 @@
 <h2>Demo dashboard</h2>
 
-<div [innerHTML]="temp | bypassHtmlSanitizer"></div>
+<div [innerHTML]="temp | bypassSecurityTrustHtml"></div>
 
 <gridster [options]="options">
   <gridster-item [item]="item" *ngFor="let item of dashboard">
     <div class="gridster-item-content">
-      <div [innerHTML]="item.content | bypassHtmlSanitizer"></div>
+      <div [innerHTML]="item.content | bypassSecurityTrustHtml"></div>
     </div>
+
+    <!--<ndc-dynamic [ndcDynamicComponent]="component"></ndc-dynamic>-->
   </gridster-item>
 </gridster>

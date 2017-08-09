@@ -1,33 +1,24 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule} from "@angular/router";
 import {HttpClientModule} from '@angular/common/http';
-import {GridsterModule} from 'angular-gridster2';
 import {AppComponent} from './app.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {QuickstartComponent} from './quickstart/quickstart.component';
-import {BypassHtmlSanitizerPipe} from "./pipes/bypass-html-sanitizer.pipe";
-
-const appRoutes: Routes = [
-  {path: 'quickstart', component: QuickstartComponent},
-  {path: 'dashboard', component: DashboardComponent}
-];
+import {DashboardModule} from "./dashboard/dashboard.module";
+import {QuickstartModule} from "./quickstart/quickstart.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    QuickstartComponent,
-    BypassHtmlSanitizerPipe
-  ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: false}
-    ),
+    RouterModule.forRoot([
+        {path: 'quickstart', component: QuickstartModule.getComponent()},
+        {path: 'dashboard', component: DashboardModule.getComponent()}
+      ]),
     HttpClientModule,
-    GridsterModule
+    QuickstartModule,
+    DashboardModule.forRoot()
+  ],
+  declarations: [
+    AppComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
